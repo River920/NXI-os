@@ -15,3 +15,5 @@ nasm "bootloader.asm" -f bin -o "bootloader.bin"
 cat "bootloader.bin" "full_kernel.bin" > "everything.bin"
 
 cat "everything.bin" "zeroes.bin" > "OS.bin"
+
+qemu-system-x86_64 -drive format=raw,file="OS.bin",index=0,if=floppy,  -m 128M
