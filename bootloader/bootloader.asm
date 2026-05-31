@@ -1,18 +1,23 @@
+[org 0x7c00]
+
 mov ah, 0x0e
-mov al, 'a'
-int 0x10
+mov bx, test
 
-
-loop:
-    inc al
-    cmp al, 'z' + 1
-    je exit
+printString:
+    mov al, [bx]
+    cmp al, 0
+    je end
     int 0x10
-    jmp loop
+    inc bx
+    jmp printString
 
 
-exit:
+test:
+    db "Testing this hopefully it works", 0
+
+end:
     jmp $
 
+
 times 510-($-$$) db 0
-db 0x55, 0xaa
+dw 0xaa55
