@@ -2,7 +2,7 @@ clear
 
 nasm -f bin bootloader.asm -o bootloader.bin
 
-i386-elf-g++ -ffreestanding -c "kernel.cpp" -o "kernel.o"
+i386-elf-gcc -ffreestanding -c "kernel.cpp" -o "kernel.o"
 
 nasm "kernel_entry.asm" -f elf -o "kernel_entry.o"
 
