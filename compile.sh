@@ -1,6 +1,6 @@
 clear
 
-nasm -f bin bootloader/bootloader.asm -o output/bootloader/bootloader.bin
+nasm -f bin -I bootloader/ bootloader/bootloader.asm -o output/bootloader/bootloader.bin
 
 i386-elf-gcc -ffreestanding -c "kernel/kernel.cpp" -o "output/kernel/kernel.o"
 
