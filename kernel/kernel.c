@@ -1,5 +1,5 @@
 
-extern "C" void _start() {
+void _start() {
 
     const char* kernelload = "Kernel loaded - NXI os";
 
