@@ -1,6 +1,12 @@
 
 void _start() {
 
+
+    void fsleep(unsigned long usecs);
+
+    fsleep(1000000);
+
+
     const char* kernelload = "Kernel loaded - NXI os";
 
 
