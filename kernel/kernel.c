@@ -27,7 +27,7 @@ void update_cursor(int x, int y) {
     outb(0x3D5, (uint8_t) ((pos >> 8) & 0xFF));
 }
 
-void print(const char* msg) {
+void print(const char* msg, int ln) {
 
 
 
@@ -35,12 +35,14 @@ void print(const char* msg) {
 
     int i = 0;
 
+    int lnf = ln*80; //line final
+
     enable_cursor(0,3);
 
 
     while (msg[i] != '\0') {
-        video_memory[i*2] = msg[i];
-        video_memory[i*2 + 1] = 0x07;
+        video_memory[(lnf + i)*2] = msg[i];
+        video_memory[(lnf + i)*2 + 1] = 0x07;
         ++i;
     }
 
@@ -50,7 +52,8 @@ void print(const char* msg) {
 
 
 void _start() {
-    print("Kernel loaded - NXI os");
+    print("Kernel loaded - NXI os", 0);
+    print("say hiiiiiiii!", 1);
 }
 
 
