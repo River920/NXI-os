@@ -35,9 +35,11 @@ void print(const char* msg, int ln) {
 
     int i = 0;
 
+    --ln; //make the first line line 1 by deducting 1 from ln
+
     int lnf = ln*80; //line final
 
-    enable_cursor(0,3);
+    enable_cursor(0,3); // changes kernels size
 
 
     while (msg[i] != '\0') {
@@ -52,8 +54,8 @@ void print(const char* msg, int ln) {
 
 
 void _start() {
-    print("Kernel loaded - NXI os", 0);
-    print("say hiiiiiiii!", 1);
+    print("Kernel loaded", 1);
+    print("Welcome to NXI os kernel", 3);
 }
 
 
