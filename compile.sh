@@ -1,12 +1,12 @@
 clear
 
-nasm -f bin -I bootloader/ bootloader/bootloader.asm -o output/bootloader/bootloader.bin
+nasm -f bin -I src/bootloader/ src/bootloader/bootloader.asm -o output/bootloader/bootloader.bin
 
-i386-elf-gcc -ffreestanding -c "kernel/kernel.c" -o "output/kernel/kernel.o"
+i386-elf-gcc -ffreestanding -c "src/kernel/kernel.c" -o "output/kernel/kernel.o"
 
-nasm "kernel/kernel_entry.asm" -f elf -o "output/kernel/kernel_entry.o"
+nasm "src/kernel/kernel_entry.asm" -f elf -o "output/kernel/kernel_entry.o"
 
-nasm "kernel/zeroes.asm" -f bin -o "output/kernel/zeroes.bin"
+nasm "src/kernel/zeroes.asm" -f bin -o "output/kernel/zeroes.bin"
 
 i386-elf-ld -m elf_i386 -s -Ttext 0x1000 --oformat binary -o "output/kernel/full_kernel.bin" "output/kernel/kernel_entry.o" "output/kernel/kernel.o"
 
