@@ -5,7 +5,6 @@
 
 
 
-
 void enable_cursor(uint8_t cursor_start, uint8_t cursor_end)
 {
 	outb(0x3D4, 0x0A);
@@ -28,9 +27,7 @@ void update_cursor(int x, int y) {
     outb(0x3D5, (uint8_t) ((pos >> 8) & 0xFF));
 }
 
-void print() {
-
-    const char* kernelload = "Kernel loaded - NXI os";
+void print(const char* msg) {
 
 
 
@@ -41,8 +38,8 @@ void print() {
     enable_cursor(0,3);
 
 
-    while (kernelload[i] != '\0') {
-        video_memory[i*2] = kernelload[i];
+    while (msg[i] != '\0') {
+        video_memory[i*2] = msg[i];
         video_memory[i*2 + 1] = 0x07;
         ++i;
     }
@@ -53,7 +50,7 @@ void print() {
 
 
 void _start() {
-    print();
+    print("Kernel loaded - NXI os");
 }
 
 
