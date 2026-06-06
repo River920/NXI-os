@@ -1,6 +1,9 @@
 #include <stdint.h>
 #define VGA_WIDTH 80
 #define VGA_HEIGHT 25
+#include <io.h>
+
+
 
 void enable_cursor(uint8_t cursor_start, uint8_t cursor_end)
 {
