@@ -1,5 +1,4 @@
 # plan for next day.
 \
-move source code to a src folder -done\
--and add a delay to kernel or user input\
+-add a delay to kernel or user input\
 -wait for 3s then shutdown
