@@ -90,7 +90,7 @@ void cls(){
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
-void loadB(int x){
+void load(int x){
 
     int i = 0;
 
@@ -98,51 +98,45 @@ void loadB(int x){
 
     while(i != x){
     
-        print("Loading.", 1);
-        msleep(1000);
         print("Loading..", 1);
-        msleep(1000);
-        print("Loading...", 1);
-        ++i;
-        msleep(1000);
-        cls();
-
-    }
-
-}
-
-void loadA(int x){
-
-    int i = 0;
-
-
-
-    while(i != x){
-    
-        print("wait.", 1);
         msleep(800);
-        print(".wait", 1);
+        print(".Loading.", 1);
         msleep(800);
-        print("..wai", 1);
+        print("..Loading", 1);
         msleep(800);
-        print("...wa", 1);
+        print("...Loadin", 1);
         msleep(800);
-        print("....w", 1);
+        print("....Loadi", 1);
         msleep(800);
-        print(".....", 1);
+        print(".....Load", 1);
         msleep(800);
-        print("t....", 1);
+        print("......Loa", 1);
         msleep(800);
-        print("it...", 1);
+        print(".......Lo", 1);
         msleep(800);
-        print("ait..", 1);
+        print("........L", 1);
+        msleep(800);
+        print(".........", 1);
+        msleep(800);
+        print("g........", 1);
+        msleep(800);
+        print("ng.......", 1);
+        msleep(800);
+        print("ing......", 1);
+        msleep(800);
+        print("ding.....", 1);
+        msleep(800);
+        print("ading....", 1);
+        msleep(800);
+        print("oading...", 1);
+        msleep(800);
+        print("Loading..", 1);
         msleep(800);
         cls();
         ++i;
     }
 
 }
-
 
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
@@ -152,11 +146,11 @@ void _start() {
     print("Kernel loaded", 1);
     print("Welcome to NXI os kernel", 3);
 
-    msleep(3000);// sleep 1 sec here
+    msleep(3000);// sleep 3 sec here
 
     cls(); // clear screen
 
-    loadA(2); // load basic
+    load(2); // loading
 
 
 }
