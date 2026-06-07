@@ -90,7 +90,7 @@ void cls(){
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
-void loadb(int x){
+void loadB(int x){
 
     int i = 0;
 
@@ -103,10 +103,42 @@ void loadb(int x){
         print("Loading..", 1);
         msleep(1000);
         print("Loading...", 1);
-        msleep(1000);
         ++i;
+        msleep(1000);
         cls();
 
+    }
+
+}
+
+void loadA(int x){
+
+    int i = 0;
+
+
+
+    while(i != x){
+    
+        print("wait.", 1);
+        msleep(800);
+        print(".wait", 1);
+        msleep(800);
+        print("..wai", 1);
+        msleep(800);
+        print("...wa", 1);
+        msleep(800);
+        print("....w", 1);
+        msleep(800);
+        print(".....", 1);
+        msleep(800);
+        print("t....", 1);
+        msleep(800);
+        print("it...", 1);
+        msleep(800);
+        print("ait..", 1);
+        msleep(800);
+        cls();
+        ++i;
     }
 
 }
@@ -124,7 +156,7 @@ void _start() {
 
     cls(); // clear screen
 
-    loadb(3); // load basic
+    loadA(2); // load basic
 
 
 }

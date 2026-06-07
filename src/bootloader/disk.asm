@@ -6,7 +6,7 @@ mov bp, 0x8000
 mov sp, bp
 
 mov bx, KERNEL_LOCATION
-mov dh, 2
+mov dh, 4 ; amount of sectors, each being 512 bytes
 
 mov ah, 0x02
 mov al, dh 
