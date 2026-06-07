@@ -3,6 +3,8 @@
 #define VGA_WIDTH 80
 #define VGA_HEIGHT 25
 
+
+
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
@@ -31,11 +33,7 @@ void update_cursor(int x, int y) {
 ////////////////////////////////////////////////////////////////
 
 void print(const char* msg, int ln) {
-
-
-
     char* video_memory = (char*) 0xB8000;
-
     int i = 0;
 
     --ln; //make the first line line 1 by deducting 1 from ln
@@ -61,7 +59,7 @@ void print(const char* msg, int ln) {
 
 
 // sleep func here
-void sleep_ms(uint32_t ms) {
+void msleep(uint32_t ms) {
     int i = 0;
     int t = ms*100000;
 
@@ -76,12 +74,59 @@ void sleep_ms(uint32_t ms) {
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
+void cls(){
+    char* video_memory = (char*) 0xB8000;
+    int i = 0;
+    int schar = VGA_WIDTH*VGA_HEIGHT; // screen characters
+
+    while(i != schar){
+        video_memory[i] = 0;
+        ++i;
+
+    }
+
+}
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+void loadb(int x){
+
+    int i = 0;
+
+
+
+    while(i != x){
+    
+        print("Loading.", 1);
+        msleep(1000);
+        print("Loading..", 1);
+        msleep(1000);
+        print("Loading...", 1);
+        msleep(1000);
+        ++i;
+        cls();
+
+    }
+
+}
+
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
 
 
 void _start() {
     print("Kernel loaded", 1);
-    sleep_ms(2000);// sleep 1 sec here
     print("Welcome to NXI os kernel", 3);
+
+    msleep(3000);// sleep 1 sec here
+
+    cls(); // clear screen
+
+    loadb(3); // load basic
+
+
 }
 
 
