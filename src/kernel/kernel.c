@@ -146,11 +146,12 @@ void _start() {
     print("Kernel loaded", 1);
     print("Welcome to NXI os kernel", 3);
 
-    msleep(3000);// sleep 3 sec here
-
+    msleep(5000);// sleep 3 sec here
     cls(); // clear screen
+    load(1); // loading
+    cls();
 
-    load(2); // loading
+    print("Initialising System...", 1);
 
 
 }
