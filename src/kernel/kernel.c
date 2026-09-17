@@ -33,7 +33,13 @@ void update_cursor(int x, int y) {
 ////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////
 
-void _start() {
+
+
+////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////
+
+
+void _start(int BOOT_MEM_AMOUNT) {
     print("Kernel loaded", 1);
     print("Welcome to NXI os kernel", 3);
 
@@ -43,9 +49,11 @@ void _start() {
     cls();
 
     print("Initialising System...", 1);
+    msleep(1000);
     enable_cursor(0,3); // parameters change cursors size
     print("Cursor enabled", 2);
-
+    // printk(BOOT_MEM_AMOUNT); doesnt work, need itoa for this
+    
 
 }
 
