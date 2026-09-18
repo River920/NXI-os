@@ -14,11 +14,12 @@ tutorial is used(because theres no way i did it my self lol): https://www.youtub
 - qemu-system-x86 - Emulate the os
 
 Installation guide for Debian/Ubuntu type linux only
+**nasm**
 ```nasm
 sudo apt install nasm
 ```
-
-```i386-elf-gcc
+**i386-elf-ld**
+```i386-elf-ld
 sudo apt update
 sudo apt install build-essential bison flex texinfo libgmp3-dev libmpc-dev libmpfr-dev
 
@@ -40,8 +41,8 @@ echo 'export PATH="$HOME/opt/cross/bin:$PATH"' >> ~/.zshrc
 source ~/.zshrc
 i386-elf-ld --version
 ```
-
-```i386-elf-ld
+**i386-elf-gcc**
+```i386-elf-gcc
 cd ~/src
 wget https://ftp.gnu.org/gnu/gcc/gcc-13.2.0/gcc-13.2.0.tar.gz
 tar -xf gcc-13.2.0.tar.gz
@@ -57,7 +58,7 @@ make install-target-libgcc
 
 i386-elf-gcc --version
 ```
-
+**qemu-system-x86**
 ```qemu-system-x86
 sudo apt install qemu-system-x86
 ```
