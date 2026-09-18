@@ -13,7 +13,7 @@ tutorial is used(because theres no way i did it my self lol): https://www.youtub
 - i386-elf-ld - Link .o files
 - qemu-system-x86 - Emulate the os
 
-Installation guide for Debian/Ubuntu type linux only
+Installation guide for Debian/Ubuntu type linux only  
 **nasm**
 ```nasm
 sudo apt install nasm
