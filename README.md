@@ -62,3 +62,13 @@ i386-elf-gcc --version
 ```qemu-system-x86
 sudo apt install qemu-system-x86
 ```
+
+# Credits and resources
+
+**itoa function**
+ - https://www.strudel.org.uk/itoa/
+
+**osdev**
+ - https://wiki.osdev.org/Expanded_Main_Page
+ - https://f.osdev.org/
+
