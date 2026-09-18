@@ -1,5 +1,6 @@
 #include <stdint.h>
 #include "drivers/io/io.h"
+#include "drivers/logic/itoa.h"
 #include "drivers/screen/printing.h"
 #define VGA_WIDTH 80
 #define VGA_HEIGHT 25
@@ -43,6 +44,9 @@ void _start(int BOOT_MEM_AMOUNT) {
     print("Kernel loaded", 1);
     print("Welcome to NXI os kernel", 3);
 
+    int i = 12;
+    const char* test = itoa(i, 10);
+
     msleep(5000);// sleep 3 sec here
     cls(); // clear screen
     load(1); // loading
@@ -52,6 +56,7 @@ void _start(int BOOT_MEM_AMOUNT) {
     msleep(1000);
     enable_cursor(0,3); // parameters change cursors size
     print("Cursor enabled", 2);
+    print(test, 3);
     // print(BOOT_MEM_AMOUNT, 3); doesnt work, need itoa for this
     
 
