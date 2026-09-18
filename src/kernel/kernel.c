@@ -52,7 +52,7 @@ void _start(int BOOT_MEM_AMOUNT) {
     msleep(1000);
     enable_cursor(0,3); // parameters change cursors size
     print("Cursor enabled", 2);
-    // printk(BOOT_MEM_AMOUNT); doesnt work, need itoa for this
+    // print(BOOT_MEM_AMOUNT, 3); doesnt work, need itoa for this
     
 
 }
