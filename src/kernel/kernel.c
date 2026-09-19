@@ -39,17 +39,18 @@ void _start(int BOOT_STORAGE_AMOUNT) {
     enable_cursor(0,14); // parameters change cursors size
     print("Cursor enabled", 2, 0);
 
+    print("Hardware info:", 4, 0);
 
-
-    print("Storage amount in Bytes: ", 3, 0);
+    // print amount of disk space allocated
+    print("Storage amount allocated, in Bytes: ", 6, 0);
     int BOOT_STORAGE_AMOUNT_BYTES = BOOT_STORAGE_AMOUNT * 512; // convert to bytes
-    const char* STORAGE_AMOUNT_CHAR = itoa(BOOT_STORAGE_AMOUNT_BYTES, 10);
-    print(STORAGE_AMOUNT_CHAR, 3, 25); // using itoa to properly print the storage amount
-
-
-    print("Amount of disk sectors used: ", 4, 0);
+    const char* STORAGE_AMOUNT_CHAR = itoa(BOOT_STORAGE_AMOUNT_BYTES, 10); // using itoa to properly print as a const char*
+    print(STORAGE_AMOUNT_CHAR, 6, 36);
+    
+    // print amount of disk sectors allocated
+    print("Amount of disk sectors allocated: ", 7, 0);
     const char* BOOT_SECTOR_AMOUNT = itoa(BOOT_STORAGE_AMOUNT, 10);
-    print(BOOT_SECTOR_AMOUNT, 4, 29);
+    print(BOOT_SECTOR_AMOUNT, 7, 34);
 
 }
 
