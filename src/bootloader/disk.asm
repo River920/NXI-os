@@ -6,7 +6,7 @@ mov bp, 0x8000
 mov sp, bp
 
 mov bx, KERNEL_LOCATION
-mov dh, 8 ; amount of sectors, each being 512 bytes, this is 4096 Bytes
+mov dh, 4 ; amount of sectors, each being 512 bytes, this is 4096 Bytes
 mov [BOOT_STORAGE_AMOUNT], dh
 
 mov ah, 0x02
