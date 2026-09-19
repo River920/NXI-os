@@ -27,6 +27,7 @@ clean:
 	rm -f output/kernel/kernel_entry.o
 	rm -f output/kernel/kernel.o
 	rm -f output/kernel/zeroes.bin
+	rm -f output/os/os.bin
 	clear
 
 mkdir:
