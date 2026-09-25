@@ -1,35 +1,12 @@
-.PHONY: all build run clean mkdir
+x86_64_bootloader_asm_source_files := $(shell find src/bootloader -name *.asm)
+x86_64_bootloader_asm_object_files := $(patsubst src/bootloader/%.asm, output/bootloader/%.o, $(x86_64_bootloader_asm_source_files))
 
-all: build run
+$(x86_64_bootloader_asm_object_files): output/bootloader/%.o : src/bootloader/%.asm
+	mkdir -p $(dir $@) && \
+	nasm -f elf64 $(patsubst output/bootloader/%.o, src/bootloader/%.asm, $@) -o $@
 
-build: mkdir
-	# Compile the bootloader
-	nasm -f bin -I src/bootloader/ src/bootloader/bootloader.asm -o output/bootloader/bootloader.bin
-	# Compile the kernel_entry
-	nasm "src/kernel/asm/kernel_entry.asm" -f elf64 -o "output/kernel/kernel_entry.o"
-	# Compile the zeroes
-	nasm "src/kernel/asm/zeroes.asm" -f bin -o "output/kernel/zeroes.bin"
-	# Compile the kernel
-	x86_64-elf-gcc -mno-red-zone -ffreestanding -c "src/kernel/kernel.c" -o "output/kernel/kernel.o"
-	# Combine the 2 kernel parts into 1
-	x86_64-elf-ld -m elf_x86_64 -s -Ttext 0x1000 --oformat binary -o "output/kernel/full_kernel.bin" "output/kernel/kernel_entry.o" "output/kernel/kernel.o"
-	# Concatenate bootloader, zeroes and kernel into the os
-	cat "output/bootloader/bootloader.bin" "output/kernel/full_kernel.bin" "output/kernel/zeroes.bin" > "output/os/os.bin"
-
-run: output/os/os.bin
-	# Emulate the os
-	qemu-system-x86_64 -drive format=raw,file="output/os/os.bin",index=0,if=floppy, -m 128M
-
-clean:
-	# Clean out unnecessary files
-	rm -f output/bootloader/bootloader.bin
-	rm -f output/kernel/full_kernel.bin
-	rm -f output/kernel/kernel_entry.o
-	rm -f output/kernel/kernel.o
-	rm -f output/kernel/zeroes.bin
-	rm -f output/os/os.bin
-	clear
-
-mkdir:
-	# Make output directories
-	mkdir -p output/bootloader output/kernel output/os
+.PHONY build-x86_64: $(x86_64_bootloader_asm_object_files)
+	mkdir -p dist/x86_64 && .
+	x86_64-elf-ld -n -o dist/x86_64/kernel.bin -T targets/x86_64/linker.ld $(x86_64_bootloader_asm_object_files) && \
+	cp dist/x86_64/kernel.bin targets/x86_64/iso/boot/kernel.bin && \
+	grub-mkrescue -o dist/x86_64/kernel.iso targets/x86_64/iso

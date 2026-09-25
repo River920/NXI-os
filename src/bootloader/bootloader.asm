@@ -1,18 +1,8 @@
-[org 0x7c00]                        
-KERNEL_LOCATION equ 0x1000
-BOOT_STORAGE_AMOUNT equ 0x0500
+global start
 
-mov [BOOT_DISK], dl                 
-
-%include "disk.asm"
-
-BOOT_DISK: db 0
-
-%include "gdt.asm"
-
-%include "pm.asm"
-
-                                     
- 
-times 510-($-$$) db 0              
-dw 0xaa55
+section .text
+bits 32
+start:
+    ; print 'OK'
+    mov dword [0xb8000], 0x2f4b2f4f
+    hlt
