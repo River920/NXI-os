@@ -1,7 +1,6 @@
 section .text
     [bits 32]
     [extern _start]
-    movzx eax, byte [0x0500]
-    push eax
+    movzx %edi, byte [0x0500]
     call _start
     jmp $

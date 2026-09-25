@@ -6,13 +6,13 @@ build: mkdir
 	# Compile the bootloader
 	nasm -f bin -I src/bootloader/ src/bootloader/bootloader.asm -o output/bootloader/bootloader.bin
 	# Compile the kernel_entry
-	nasm "src/kernel/kernel_entry.asm" -f elf -o "output/kernel/kernel_entry.o"
+	nasm "src/kernel/asm/kernel_entry.asm" -f elf64 -o "output/kernel/kernel_entry.o"
 	# Compile the zeroes
-	nasm "src/kernel/zeroes.asm" -f bin -o "output/kernel/zeroes.bin"
+	nasm "src/kernel/asm/zeroes.asm" -f bin -o "output/kernel/zeroes.bin"
 	# Compile the kernel
-	i386-elf-gcc -ffreestanding -c "src/kernel/kernel.c" -o "output/kernel/kernel.o"
+	x86_64-elf-gcc -mno-red-zone -ffreestanding -c "src/kernel/kernel.c" -o "output/kernel/kernel.o"
 	# Combine the 2 kernel parts into 1
-	i386-elf-ld -m elf_i386 -s -Ttext 0x1000 --oformat binary -o "output/kernel/full_kernel.bin" "output/kernel/kernel_entry.o" "output/kernel/kernel.o"
+	x86_64-elf-ld -m elf_x86_64 -s -Ttext 0x1000 --oformat binary -o "output/kernel/full_kernel.bin" "output/kernel/kernel_entry.o" "output/kernel/kernel.o"
 	# Concatenate bootloader, zeroes and kernel into the os
 	cat "output/bootloader/bootloader.bin" "output/kernel/full_kernel.bin" "output/kernel/zeroes.bin" > "output/os/os.bin"
 
